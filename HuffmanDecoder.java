@@ -20,23 +20,27 @@ public class HuffmanDecoder {
 		prefiCommonprefixInArray.solving();
 	}
 	private void solving() {
-		ArrayList<String> huffman=new ArrayList<String>();
+		ArrayList<String> huffman = new ArrayList<String>();
 		huffman.add("A");
 		huffman.add("B");
 		huffman.add("C");
 		huffman.add("D");
 		huffman.add("E");
 		System.out.println("Enter your number : ");
-		 String k=scanner.nextLine();
-		 int count=0;
-		 for(int i=0;i<k.length();i++) {
-			 int n=(int)k.charAt(i);
-			 if(n==48) {
-				 System.out.print(huffman.get(count));
-				 count=0;
-			 }else {
-				 count++;
-			 }
-		 }			
+		String k = scanner.nextLine();
+		int count = 0;
+		for (int i = 0; i < k.length(); i++) {
+			int n = (int) k.charAt(i);
+			if(count==4) {
+				System.out.print(huffman.get(count));
+				count=0;
+			}
+			 if (n == 48) {
+				System.out.print(huffman.get(count));
+				count = 0;
+			} else  {
+				count++;
+			}
+		}
 	}
 }

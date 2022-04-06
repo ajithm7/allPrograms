@@ -1,45 +1,87 @@
-package com.surprise;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
-/*  3. Roman to Integer
-	Symbol       Value
-	I             1
-	V             5
-	X             10
-	L             50
-	C             100
-	D             500
-	M             1000
+public class RomanInteger {
+	static Scanner scanner = new Scanner(System.in);
 
-Example:
-Input: s = "LVIII"
-Output: 58
-Explanation: L = 50, V= 5, III = 3
-*/
-public class RomanToInteger {
-	static Scanner  scanner=new Scanner(System.in);
 	public static void main(String[] args) {
-		RomanToInteger romenInteger=new RomanToInteger();
-		romenInteger.solving();
+		RomanInteger roman = new RomanInteger();
+		roman.solving();
+
 	}
+
+	
 	private void solving() {
 		System.out.println("Enter your number : ");
-		 String k=scanner.nextLine();
-		 int n=0;
-		 for(int i=0;i<k.length();i++) {
-		 char ch=k.charAt(i);
-		 switch(ch) {
-		 case 'M'->n+=1000;
-		 case 'D'->n+=500;
-		 case 'C'->n+=100;
-		 case 'L'->n+=50;
-		 case 'X'->n+=10;
-		 case 'V'->n+=5;
-		 case 'I'->n+=1;}
-		 }
+		String k = scanner.nextLine();
+		int n = 0;
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("M", 1000);
+		map.put("D", 500);
+		map.put("C", 100);
+		map.put("L", 50);
+		map.put("X", 10);
+		map.put("V", 5);
+		map.put("I", 1);
+		String string = "";
+		String before = "";
+		for (int i = 0; i < k.length(); i++) {
+			
+			string += k.charAt(i);
+			if (i - 1 >= 0) {
+				before += k.charAt(i - 1);
+			}
+			
+			switch (string) {
+			
+			case "M" -> {
+				if (i - 1 >= 0) {
+					if (map.get(before) < map.get(string))
+						n += 800;
+					else n+= 1000;
+				}else n+= 1000;
+			}
+			case "D" -> {
+				if (i - 1 >= 0) {
+					if (map.get(before) < map.get(string))
+						n += 300;
+					else n+= 500;
+				}else n+= 500;
+			}
+			case "C" -> {
+				if (i - 1 >= 0) {
+					if (map.get(before) < map.get(string))
+						n += 80;
+					else n+= 100;
+				}else n+= 100;
+			}
+			case "L" -> {
+				if (i - 1 >= 0) {
+					if (map.get(before) < map.get(string))
+						n += 30;
+					else n+= 50;
+				}else n+= 50;
+			}
+			case "X" -> {
+				if (i - 1 >= 0) {
+					if (map.get(before) < map.get(string))
+						n += 8;
+					else n+= 10;
+				}else n+= 10;
+			}
+			case "V" -> {
+				if (i - 1 >= 0) {
+					if (map.get(before) < map.get(string))
+						n += 3;
+					else n+= 5;
+				}else n+= 5;
+			}
+			case "I" -> n += 1;
+			}
+		string="";}
 		System.out.println(n);
+
 	}
-
-
 }
+
